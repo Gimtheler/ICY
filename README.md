@@ -2,7 +2,6 @@
 
 Windows display utility with a simple overlay. It is made for resolution changes, screen color tweaks and a static crosshair window.
 
-![ICY preview](preview.png)
 
 ## What it does
 
