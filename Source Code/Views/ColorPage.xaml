@@ -1,0 +1,154 @@
+<UserControl x:Class="ICY.Views.ColorPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <DockPanel Margin="0,0,0,16">
+                <Button DockPanel.Dock="Right"
+                        Content="Reset"
+                        Style="{StaticResource GhostButton}"
+                        Command="{Binding ResetColorCommand}" />
+                <TextBlock Style="{StaticResource TitleText}" Text="Colour" VerticalAlignment="Center" />
+            </DockPanel>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                <StackPanel>
+                    <DockPanel>
+                        <TextBlock Text="Brightness" FontWeight="SemiBold" Foreground="#E8F1F8" />
+                        <TextBlock HorizontalAlignment="Right" Foreground="#7EC8E3"
+                                   Text="{Binding Color.Brightness, StringFormat=0.00}" />
+                    </DockPanel>
+                    <Slider Margin="0,8,0,18" Minimum="0.2" Maximum="2.5"
+                            Value="{Binding Color.Brightness, Mode=TwoWay}" />
+
+                    <DockPanel>
+                        <TextBlock Text="Contrast" FontWeight="SemiBold" Foreground="#E8F1F8" />
+                        <TextBlock HorizontalAlignment="Right" Foreground="#7EC8E3"
+                                   Text="{Binding Color.Contrast, StringFormat=0.00}" />
+                    </DockPanel>
+                    <Slider Margin="0,8,0,18" Minimum="0.2" Maximum="3.0"
+                            Value="{Binding Color.Contrast, Mode=TwoWay}" />
+
+                    <DockPanel>
+                        <TextBlock Text="Gamma" FontWeight="SemiBold" Foreground="#E8F1F8" />
+                        <TextBlock HorizontalAlignment="Right" Foreground="#7EC8E3"
+                                   Text="{Binding Color.Gamma, StringFormat=0.00}" />
+                    </DockPanel>
+                    <Slider Margin="0,8,0,18" Minimum="0.2" Maximum="3.5"
+                            Value="{Binding Color.Gamma, Mode=TwoWay}" />
+
+                    <DockPanel>
+                        <TextBlock Text="Saturation" FontWeight="SemiBold" Foreground="#E8F1F8" />
+                        <TextBlock HorizontalAlignment="Right" Foreground="#7EC8E3"
+                                   Text="{Binding Color.Saturation, StringFormat=0.00}" />
+                    </DockPanel>
+                    <Slider Margin="0,8,0,0" Minimum="0" Maximum="3.0"
+                            Value="{Binding Color.Saturation, Mode=TwoWay}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Looks" FontWeight="SemiBold" Foreground="#E8F1F8" Margin="0,0,0,12" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox ItemsSource="{Binding Presets}"
+                                  SelectedItem="{Binding SelectedPreset}"
+                                  DisplayMemberPath="Name" />
+                        <Button Grid.Column="2"
+                                Content="&#xE74D;"
+                                Style="{StaticResource IconButton}"
+                                Foreground="#F07178"
+                                Command="{Binding DeletePresetCommand}" />
+                        <Button Grid.Column="4"
+                                Content="Save look"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding SaveLookCommand}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,12,0,0">
+                <StackPanel>
+                    <TextBlock Text="Colour vision" FontWeight="SemiBold" Foreground="#E8F1F8" Margin="0,0,0,12" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="8" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Normal"
+                                Command="{Binding SetColourVisionCommand}"
+                                CommandParameter="Normal">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource VisionButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Color.IsVisionNormal}" Value="True">
+                                            <Setter Property="Background" Value="#7EC8E3" />
+                                            <Setter Property="Foreground" Value="#071018" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Grid.Column="2"
+                                Content="Green visible"
+                                Command="{Binding SetColourVisionCommand}"
+                                CommandParameter="GreenVisible">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource VisionButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Color.IsVisionGreenVisible}" Value="True">
+                                            <Setter Property="Background" Value="#7EC8E3" />
+                                            <Setter Property="Foreground" Value="#071018" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Grid.Column="4"
+                                Content="Red weak"
+                                Command="{Binding SetColourVisionCommand}"
+                                CommandParameter="RedWeak">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource VisionButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Color.IsVisionRedWeak}" Value="True">
+                                            <Setter Property="Background" Value="#7EC8E3" />
+                                            <Setter Property="Foreground" Value="#071018" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Grid.Column="6"
+                                Content="Blue weak"
+                                Command="{Binding SetColourVisionCommand}"
+                                CommandParameter="BlueWeak">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource VisionButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Color.IsVisionBlueWeak}" Value="True">
+                                            <Setter Property="Background" Value="#7EC8E3" />
+                                            <Setter Property="Foreground" Value="#071018" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Setup</AssemblyName>
+    <Product>ICY</Product>
+    <Version>1.0.0</Version>
+    <InformationalVersion>V1.0</InformationalVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\Assets\icy.ico</ApplicationIcon>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishAot>true</PublishAot>
+    <IlcOptimizationPreference>Size</IlcOptimizationPreference>
+    <StackTraceSupport>false</StackTraceSupport>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="payload\Application.exe" LogicalName="Application.exe" Condition="Exists('payload\Application.exe')" />
+  </ItemGroup>
+</Project>

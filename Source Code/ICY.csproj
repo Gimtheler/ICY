@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RootNamespace>ICY</RootNamespace>
+    <AssemblyName>ICY</AssemblyName>
+    <Product>ICY</Product>
+    <Company>ICY</Company>
+    <Description>OS-level display tweaks and a plain DWM overlay window. Does not access other processes, files, or inputs.</Description>
+    <Version>1.0.0</Version>
+    <InformationalVersion>V1.0</InformationalVersion>
+    <ApplicationTitle>ICY</ApplicationTitle>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <ApplicationIcon>Assets\icy.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\icy.ico" />
+    <Resource Include="Assets\icy.png" />
+    <Compile Remove="Setup\**" />
+    <EmbeddedResource Remove="Setup\**" />
+    <None Remove="Setup\**" />
+    <Page Remove="Setup\**" />
+    <Compile Remove="publish\**" />
+    <None Remove="publish\**" />
+  </ItemGroup>
+</Project>

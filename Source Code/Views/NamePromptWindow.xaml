@@ -1,0 +1,39 @@
+<Window x:Class="ICY.Views.NamePromptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="380"
+        Height="168"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        Background="#0B1220"
+        Foreground="#E8F1F8"
+        FontFamily="Segoe UI Variable, Segoe UI">
+    <Border BorderBrush="#24344C" BorderThickness="1" Background="#0E1624" Padding="20">
+        <DockPanel>
+            <TextBlock x:Name="TitleText"
+                       DockPanel.Dock="Top"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,14" />
+            <StackPanel DockPanel.Dock="Bottom"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,16,0,0">
+                <Button Content="Cancel"
+                        Width="96"
+                        Style="{StaticResource GhostButton}"
+                        Click="Cancel_Click"
+                        IsCancel="True" />
+                <Button Content="Save"
+                        Width="96"
+                        Margin="8,0,0,0"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="Save_Click"
+                        IsDefault="True" />
+            </StackPanel>
+            <TextBox x:Name="NameBox" />
+        </DockPanel>
+    </Border>
+</Window>

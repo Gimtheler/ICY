@@ -1,0 +1,27 @@
+<Window x:Class="ICY.Views.IdentifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        Topmost="True"
+        ResizeMode="NoResize"
+        Focusable="False">
+    <Border Width="160"
+            Height="160"
+            CornerRadius="24"
+            Background="#CC0B1220"
+            BorderBrush="#7EC8E3"
+            BorderThickness="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+        <TextBlock x:Name="NumberText"
+                   FontSize="72"
+                   FontWeight="Bold"
+                   Foreground="#E8F1F8"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+    </Border>
+</Window>

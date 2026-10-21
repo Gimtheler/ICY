@@ -1,0 +1,89 @@
+<UserControl x:Class="ICY.Views.DisplayPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel>
+            <DockPanel Margin="0,0,0,16">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button Content="Detect displays"
+                            Style="{StaticResource GhostButton}"
+                            Command="{Binding DetectDisplaysCommand}" />
+                    <Button Content="Refresh"
+                            Margin="8,0,0,0"
+                            Style="{StaticResource GhostButton}"
+                            Command="{Binding RefreshDisplaysCommand}" />
+                </StackPanel>
+                <TextBlock Style="{StaticResource TitleText}" Text="Display" VerticalAlignment="Center" />
+            </DockPanel>
+
+            <ItemsControl ItemsSource="{Binding Monitors}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Margin="0,0,10,10"
+                                Command="{Binding DataContext.SelectMonitorCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                CommandParameter="{Binding}"
+                                Cursor="Hand"
+                                HorizontalContentAlignment="Stretch">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource GhostButton}">
+                                    <Setter Property="Padding" Value="16,14" />
+                                    <Setter Property="Foreground" Value="#E8F1F8" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                            <Setter Property="Background" Value="#1A3348" />
+                                            <Setter Property="Foreground" Value="#E8F1F8" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="32" Height="32" CornerRadius="16" Background="#7EC8E3" Margin="0,0,12,0">
+                                    <TextBlock Text="{Binding Number}"
+                                               Foreground="#071018"
+                                               FontWeight="Bold"
+                                               FontSize="16"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding DisplayLabel}" FontWeight="SemiBold" FontSize="14" Foreground="#E8F1F8" />
+                                    <TextBlock Text="{Binding BoundsLabel}" Foreground="#8BA3B5" Margin="0,6,0,0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Border Style="{StaticResource Card}" Margin="0,6,0,0">
+                <StackPanel>
+                    <DockPanel>
+                        <TextBlock Text="Resolution" Style="{StaticResource SectionText}" Foreground="#E8F1F8" />
+                        <TextBlock HorizontalAlignment="Right"
+                                   Foreground="#7EC8E3"
+                                   Text="{Binding CurrentModeLabel}" />
+                    </DockPanel>
+                    <ComboBox ItemsSource="{Binding Modes}"
+                              SelectedItem="{Binding SelectedMode}"
+                              DisplayMemberPath="Label" />
+                    <DockPanel Margin="0,16,0,0">
+                        <Button DockPanel.Dock="Right"
+                                Width="120"
+                                Content="Apply"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding ApplyDisplayCommand}" />
+                        <CheckBox Content="Show all modes"
+                                  VerticalAlignment="Center"
+                                  Foreground="#E8F1F8"
+                                  IsChecked="{Binding ShowAllDisplayModes}" />
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

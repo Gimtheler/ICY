@@ -1,0 +1,82 @@
+<UserControl x:Class="ICY.Views.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource TitleText}" Text="Settings" Margin="0,0,0,16" />
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right"
+                            Width="160"
+                            Content="Run as admin"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding RestartAsAdminCommand}" />
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Administrator" FontWeight="SemiBold" Foreground="#E8F1F8" />
+                        <TextBlock Margin="0,4,0,0" Foreground="#8BA3B5" Text="{Binding ElevationLabel}" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                <StackPanel>
+                    <TextBlock Text="Startup" FontWeight="SemiBold" Margin="0,0,0,12" Foreground="#E8F1F8" />
+                    <CheckBox Content="Automatic startup"
+                              Foreground="#E8F1F8"
+                              IsChecked="{Binding AutomaticStartup}" />
+                    <CheckBox Margin="0,12,0,0"
+                              Content="Minimise to Tray on X"
+                              Foreground="#E8F1F8"
+                              IsChecked="{Binding MinimizeToTrayOnClose}" />
+                    <CheckBox Margin="0,12,0,0"
+                              Content="Start Minimized"
+                              Foreground="#E8F1F8"
+                              IsChecked="{Binding StartMinimized}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                <StackPanel>
+                    <DockPanel>
+                        <TextBlock Text="{Binding VersionLabel}"
+                                   DockPanel.Dock="Right"
+                                   Foreground="#8BA3B5"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text="My other projects" FontWeight="SemiBold" Foreground="#E8F1F8" />
+                    </DockPanel>
+                    <Button Margin="0,10,0,0"
+                            Content="github.com/soh4p"
+                            Style="{StaticResource GhostButton}"
+                            HorizontalAlignment="Left"
+                            Command="{Binding OpenProjectsCommand}" />
+                    <Button Margin="0,10,0,0"
+                            Content="Check for updates"
+                            Style="{StaticResource GhostButton}"
+                            HorizontalAlignment="Left"
+                            Command="{Binding OpenUpdatesCommand}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Diagnostics" FontWeight="SemiBold" Margin="0,0,0,12" Foreground="#E8F1F8" />
+                    <CheckBox Content="Activity log"
+                              Foreground="#E8F1F8"
+                              IsChecked="{Binding LoggingEnabled}" />
+                    <CheckBox Margin="0,12,0,0"
+                              Content="Debug console"
+                              Foreground="#E8F1F8"
+                              IsChecked="{Binding ConsoleEnabled}" />
+
+                    <ListBox Margin="0,16,0,0"
+                             Height="220"
+                             FontFamily="Cascadia Mono, Consolas"
+                             FontSize="12"
+                             ItemsSource="{Binding LogLines}"
+                             Visibility="{Binding LoggingEnabled, Converter={StaticResource BoolVis}}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
